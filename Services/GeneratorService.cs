@@ -160,7 +160,7 @@ namespace WwwDocs.Services
                         var paramClean = param.Trim();
                         var paramSplit = paramClean.Split(new string[] { " " }, StringSplitOptions.None).Where(x => x.Length > 0).ToList();
 
-                        sb.AppendLine($"/// <param cref=\"{paramSplit[0]}\" name=\"{paramSplit[1]}\">Parameter for <see cref=\"{paramSplit[1]}\"/></param>");
+                        sb.AppendLine($"/// <param cref=\"{paramSplit[0].Replace("<", "{").Replace(">", "}").Replace("?", "")}\" name=\"{paramSplit[1]}\">Parameter for {paramSplit[1]}</param>");
                     }
                     //sb.AppendLine($"/// <returns>An object of type <see cref=\"{className}\"></returns>");
 
@@ -227,12 +227,12 @@ namespace WwwDocs.Services
                         if (!paramClean.Contains("Dictionary"))
                         {
                             // TODO
-                            sb.AppendLine($"/// <param cref=\"{paramSplit[0].Replace("<", "{").Replace(">", "}")}\" name=\"{paramSplit[1]}\">Parameter for <see cref=\"{paramSplit[1]}\"/></param>");
+                            sb.AppendLine($"/// <param cref=\"{paramSplit[0].Replace("<", "{").Replace(">", "}").Replace("?", "")}\" name=\"{paramSplit[1]}\">Parameter for {paramSplit[1]}</param>");
                         }
                     }
-                    if (methodReturn != "void")
+                    if (methodReturn != "void" && !data.Contains("ControllerBase"))
                     {
-                        sb.AppendLine($"/// <returns>An object of type <see cref=\"{methodReturn.Replace("<", "{").Replace(">", "}")}\"/></returns>");
+                        sb.AppendLine($"/// <returns>An object of type {methodReturn}/></returns>");
                     }
 
                     foreach (var attribute in attributesCache)
@@ -243,7 +243,10 @@ namespace WwwDocs.Services
                     attributesCache.Clear();
                 }
 
-                sb.AppendLine(cleanItem);
+                if (!cleanItem.StartsWith("///"))
+                {
+                    sb.AppendLine(cleanItem);
+                }
             }
 
             // Return
