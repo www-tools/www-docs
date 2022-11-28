@@ -67,6 +67,42 @@ namespace WwwDocs.Services
                     attributesCache.Clear();
                 }
 
+                if (cleanItem.Contains("{ get; set; }"))
+                {
+                    var backupCleanItem = cleanItem;
+                    cleanItem = cleanItem.Replace("{ get; set; }", "");
+
+                    // Get property name
+                    var propertySplit = cleanItem.Split(new string[] { " " }, StringSplitOptions.None).Where(x => x.Length > 0).ToList();
+
+                    // Contains definition? =
+                    if (propertySplit.Contains("="))
+                    {
+                        propertySplit = cleanItem.Split(new string[] { "=" }, StringSplitOptions.None)[0].Split(new string[] { " " }, StringSplitOptions.None).Where(x => x.Length > 0).ToList();
+                    }
+
+                    // Remove last, take last one
+                    var propertyName = $"{propertySplit.Last().Replace(";", "")}";
+
+                    sb.AppendLine("/// <summary>");
+
+                    if (item.Contains("{ get; set; }"))
+                    {
+                        sb.AppendLine($"/// Gets or sets the <see cref=\"{propertyName}\"/>");
+                    }
+
+                    sb.AppendLine("/// </summary>");
+
+                    foreach (var attribute in attributesCache)
+                    {
+                        sb.AppendLine(attribute);
+                    }
+
+                    attributesCache.Clear();
+
+                    cleanItem = backupCleanItem;
+                }
+
                 // If it's property
 
                 if ((cleanItem.Contains("private") || cleanItem.Contains("public") || cleanItem.Contains("{ get; set; }")) && cleanItem.EndsWith($";"))
@@ -113,7 +149,7 @@ namespace WwwDocs.Services
 
                     // Get parameters
                     var parametersStr = cleanUitem.Split(new string[] { "(" }, StringSplitOptions.None)[1];
-                    var parameters = parametersStr.Split(new string[] { "," }, StringSplitOptions.None);
+                    var parameters = parametersStr.Split(new string[] { "," }, StringSplitOptions.None).Where(x => x.Length > 0).ToList();
 
                     sb.AppendLine("/// <summary>");
                     sb.AppendLine($"/// Constructor for <see cref=\"{className}\"/>");
