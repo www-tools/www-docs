@@ -232,7 +232,7 @@ namespace WwwDocs.Services
                     }
                     if (methodReturn != "void" && !data.Contains("ControllerBase"))
                     {
-                        sb.AppendLine($"/// <returns>An object of type {methodReturn}/></returns>");
+                        //sb.AppendLine($"/// <returns>An object of type {methodReturn}/></returns>");
                     }
 
                     foreach (var attribute in attributesCache)
