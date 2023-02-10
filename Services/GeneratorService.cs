@@ -253,7 +253,16 @@ namespace WwwDocs.Services
             }
 
             // Return
-            return FormatCode(sb.ToString());
+            var formatted = FormatCode(sb.ToString());
+
+            var cleaned = CleanupLastLines(formatted);
+
+            return FormatCode(cleaned);
+        }
+
+        public string CleanupLastLines(string code)
+        {
+            return code.Replace("}\n\n\n", "}");
         }
 
         public string FormatCode(string code)
