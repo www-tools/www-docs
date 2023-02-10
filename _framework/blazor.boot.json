@@ -33,7 +33,7 @@
       "System.Runtime.dll": "sha256-6JZSLMQf238zP6pYhvgGIiRBNg82JqoCeHMRpBGT2jc=",
       "System.Text.Encodings.Web.dll": "sha256-YOpt9bNqgH8r70l5zsvFK9V9KO6EmNuG2wgjMLCNcVo=",
       "System.Text.Json.dll": "sha256-Q6472fcxNkCbAnl0sudsH4mW0YD6rzY1niDWI6n14u0=",
-      "WwwDocs.dll": "sha256-j\/SC2vkn5+LJLwaNPGYYqllLcyNho+xbzByxtxEd\/mg="
+      "WwwDocs.dll": "sha256-WphIYqxesk2+gwxoQgnF9FmWRq4JWOmWP5f156K8Mb0="
     },
     "extensions": null,
     "lazyAssembly": null,
@@ -41,7 +41,7 @@
     "pdb": null,
     "runtime": {
       "dotnet.6.0.13.nr8mgwefkb.js": "sha256-16Sm6b3kWAxIESghabKGf7n6i8X2sXoejRXfe59fPEw=",
-      "dotnet.wasm": "sha256-CPpKQwITo\/IrM+9Ay61VpVik8pj3O4LVkEsBVRZEGRM="
+      "dotnet.wasm": "sha256-zHzITnyXo5Azr4R9lBhCCyUOjm3t+gnCZKf8IWmv4PA="
     },
     "satelliteResources": null
   }
