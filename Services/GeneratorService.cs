@@ -107,8 +107,9 @@ namespace WwwDocs.Services
 
                 // If it's property
 
-                if ((cleanItem.Contains("private") || cleanItem.Contains("public") || cleanItem.Contains("{ get; set; }")) && cleanItem.EndsWith($";"))
+                if ((cleanItem.Contains("private") || cleanItem.Contains("public") || cleanItem.Contains("{ get; set; }")) && cleanItem.EndsWith($";") && !cleanItem.Contains("= null!;"))
                 {
+
                     // Get property name
                     var propertySplit = cleanItem.Split(new string[] { " " }, StringSplitOptions.None).ToList();
 
