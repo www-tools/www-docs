@@ -72,6 +72,7 @@ namespace WwwDocs.Services
                 {
                     var backupCleanItem = cleanItem;
                     cleanItem = cleanItem.Replace("{ get; set; }", "");
+                    cleanItem = cleanItem.Replace("= null!;", "");
 
                     // Get property name
                     var propertySplit = cleanItem.Split(new string[] { " " }, StringSplitOptions.None).Where(x => x.Length > 0).ToList();
